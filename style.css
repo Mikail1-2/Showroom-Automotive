@@ -12,9 +12,12 @@ body {
 
 /* --- Header & Navbar --- */
 header {
-    background-color: #00cba9; /* Warna Tosca sesuai gambar */
-    padding: 10px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background: linear-gradient(90deg, #00cba9, #009688); /* Gradasi Tosca agar lebih mewah */
+    padding: 15px 0;
+    position: sticky; /* Agar menu tetap nempel saat discroll */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .navbar {
@@ -27,6 +30,111 @@ header {
 }
 
 .logo img {
+    height: 50px;
+    width: auto;
+    background: white;
+    padding: 5px;
+    border-radius: 50%; /* Logo jadi bulat */
+    border: 2px solid white;
+}
+
+.brand-name {
+    color: white;
+    font-size: 1.5rem; /* Ukuran huruf besar */
+    font-weight: 800; /* Tebal */
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 1px; /* Jarak antar huruf */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Bayangan teks tipis */
+}
+
+/* --- CAROUSEL PROMO SECTION --- */
+.poster-section {
+    padding: 20px 0;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-container {
+    position: relative;
+    /* 1. MENGATUR UKURAN AGAR TIDAK TERLALU BESAR */
+    width: 90%; 
+    max-width: 800px; /* Lebar maksimal dibatasi 800px */
+    
+    /* 2. MEMAKSA BENTUK LANDSCAPE (RASIO 16:9 seperti TV) */
+    aspect-ratio: 16 / 9; 
+    
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background: white; 
+    overflow: hidden; /* Sembunyikan bagian luar */
+}
+
+.carousel-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide img {
+    /* 3. AGAR GAMBAR UTUH & MENGIKUTI BENTUK LANDSCAPE */
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* PENTING: Gambar akan mengecil agar muat 100%, tidak terpotong */
+    background-color: #fff; /* Warna background jika ada sisa ruang kosong */
+    flex-shrink: 0;
+}
+
+/* Tombol Navigasi (Panah) */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Hitam transparan agar lebih jelas */
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.carousel-btn:hover {
+    background-color: #00cba9; /* Warna tosca saat disentuh */
+}
+
+.btn-left {
+    left: 10px; /* Posisi di dalam kotak */
+}
+
+.btn-right {
+    right: 10px; /* Posisi di dalam kotak */
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .carousel-container {
+        max-width: 95%;
+    }
+    .btn-left { left: 10px; } /* Masuk ke dalam gambar di HP */
+    .btn-right { right: 10px; }
+}
+
+.logo img {
     height: 100px; /* Sesuaikan ukuran logo */
     object-fit: contain;
     background: white; /* Background putih agar logo menonjol */
@@ -36,8 +144,7 @@ header {
 
 .nav-wrapper {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
 }
 
 /* Baris Atas: Beli & Jual */
@@ -62,20 +169,31 @@ header {
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 10px; /* Jarak antar menu */
 }
 
 .nav-links li a {
     text-decoration: none;
-    color: #333;
-    font-size: 14px;
-    font-weight: 500;
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px 16px; /* Memberi ruang napas (seperti tombol) */
+    border-radius: 20px; /* Membuat sudut tumpul (style pil) */
+    transition: all 0.3s ease; /* Animasi halus */
+    border: 1px solid transparent; /* Persiapan border */
 }
 
-.nav-links li a:hover, 
+.nav-links li a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Putih transparan */
+    transform: translateY(-2px); /* Sedikit naik ke atas */
+}
+
+/* Efek Menu Aktif (Misal sedang di Home) */
 .nav-links li a.active {
-    color: white;
-    border-bottom: 2px solid #ffeb3b; /* Garis kuning saat hover */
+    background-color: #ffeb3b; /* Warna Kuning */
+    color: #333; /* Teks jadi gelap */
+    box-shadow: 0 4px 10px rgba(255, 235, 59, 0.4); /* Efek cahaya kuning */
+    transform: scale(1.05); /* Sedikit membesar */
 }
 
 /* --- Banner Section (Meniru Poster Kuning) --- */
