@@ -1,65 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Contoh Anchor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sukses Motor Online</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        <img src="https://raw.githubusercontent.com/Mikail1-2/Showroom-Automotive/main/Logo.png" alt="Logo">
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#suzuki">Suzuki</a></li>
-        <li><a href="#honda">Honda</a></li>
-        <li><a href="#yamaha">Yamaha</a></li>
-        <li><a href="#piaggio">Piaggio</a></li>
-        <li><a href="#kawasaki">Kawasaki</a></li>
-    </ul>
-    </nav>
 
-    <section id="home">
-    <h1>Home</h1>
-    <p>Ini bagian Home.</p>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/Mikail1-2/Showroom-Automotive/main/Logo.png" alt="Sukses Motor Logo">
+            </div>
+
+            <div class="nav-wrapper">
+                <div class="top-actions">
+                    <a href="#" class="action-btn">Beli</a>
+                    <a href="#" class="action-btn">Jual</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Lokasi Dealer</a></li>
+                    <li><a href="#honda">Honda</a></li>
+                    <li><a href="#yamaha">Yamaha</a></li>
+                    <li><a href="#kawasaki">Kawasaki</a></li>
+                    <li><a href="#suzuki">Suzuki</a></li>
+                    <li><a href="#piaggio">Piaggio</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="poster-section">
+        <div class="poster-container">
+            <img src="https://raw.githubusercontent.com/Mikail1-2/Showroom-Automotive/main/Gambar%20Motor/Poster%20Motor.jpg" alt="Promo Gaspool!" class="promo-poster">
+        </div>
     </section>
 
-    <section id="suzuki">
-    <h1>Suzuki</h1>
-    <div class="container">
-        <div class="card">
-            <img src="https://raw.githubusercontent.com/Mikail1-2/Showroom-Automotive/main/Gambar%20Motor/suzuki.png" alt="Sukuzuki Next 2024">
-            <h3>Suzuki Next</h3>
-            <p>Rp 20.090.000</p>
-            <p>Jakarta Pusat | 115 cc | Matic</p>
+    <section class="search-section">
+        <div class="search-wrapper">
+            
+            <h3 class="search-label">Cari sesuai merk</h3>
+            <div class="brand-grid">
+                <a href="#honda" class="brand-item">
+                    <img src="https://raw.githubusercontent.com/Mikail1-2/Showroom-Automotive/main/Gambar%20Motor/Honda_Logo.png" alt="Honda">
+                </a>
+                <a href="#yamaha" class="brand-item">
+                    <img src="https://raw.githubusercontent.com/Mikail1-2/Showroom-Automotive/main/Gambar%20Motor/Yamaha_Logo.png" alt="Yamaha">
+                </a>
+                <a href="#suzuki" class="brand-item">
+                    <img src="https://raw.githubusercontent.com/Mikail1-2/Showroom-Automotive/main/Gambar%20Motor/Suzuki_Logo.png" alt="Suzuki">
+                </a>
+                <a href="#kawasaki" class="brand-item">
+                    <img src="https://raw.githubusercontent.com/Mikail1-2/Showroom-Automotive/main/Gambar%20Motor/Kawasaki_Logo.png" alt="Kawasaki">
+                </a>
+                <a href="#piaggio" class="brand-item">
+                    <img src="https://raw.githubusercontent.com/Mikail1-2/Showroom-Automotive/main/Gambar%20Motor/Piaggio_Logo.jpg" alt="Piaggio">
+                </a>
+            </div>
+
+            <h3 class="search-label">Cari motor idamanmu</h3>
+            <div class="search-box-container">
+                <input type="text" placeholder="Ketik tipe / merk / tahun" class="search-input">
+                <button class="search-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </div>
+
         </div>
+    </section>
+
+    <section id="suzuki" class="product-section">
+        <div class="section-header">
+            <h2>Koleksi Suzuki</h2>
+        </div>
+        
+        <div class="container">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://raw.githubusercontent.com/Mikail1-2/Showroom-Automotive/main/Gambar%20Motor/suzuki.png" alt="Suzuki Nex">
+                </div>
+                <div class="card-details">
+                    <h3>Suzuki Nex II 2024</h3>
+                    <p class="price">Rp 20.090.000</p>
+                    <div class="specs">
+                        <span>Jakarta Pusat</span>
+                        <span>115 cc</span>
+                        <span>Matic</span>
+                    </div>
+                    <button class="btn-detail">Lihat Detail</button>
+                </div>
+            </div>
     
-        <div class="card">
-            <img src="https://raw.githubusercontent.com/Mikail1-2/Showroom-Automotive/main/Gambar%20Motor/suzuki2.jpg" alt="Xabre 2016">
-            <h3>Suzuki Hayate 2025</h3>
-            <p>Rp 16.320.000</p>
-            <p>Jakarta Pusat | 125 cc | Matic</p>
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://raw.githubusercontent.com/Mikail1-2/Showroom-Automotive/main/Gambar%20Motor/suzuki2.jpg" alt="Suzuki Hayate">
+                </div>
+                <div class="card-details">
+                    <h3>Suzuki Hayate 2025</h3>
+                    <p class="price">Rp 16.320.000</p>
+                    <div class="specs">
+                        <span>Jakarta Pusat</span>
+                        <span>125 cc</span>
+                        <span>Matic</span>
+                    </div>
+                    <button class="btn-detail">Lihat Detail</button>
+                </div>
+            </div>
         </div>
+    </section>
+
+    <div class="cta-footer">
+        <p>Kami Melayani Jual Beli Tukar Tambah Cash Credit Motor Bekas Berkualitas</p>
     </div>
-    <p>Ini bagian Suzuki.</p>
-    </section>
 
-    <section id="Honda"">
-    <h1>Honda</h1>
-    <p>Ini bagian Honda.</p>
-    </section>
-    
-    <section id="yamaha">
-    <h1>Yamaha</h1>
-    <p>Ini bagian Yamaha.</p>
-    </section>
-    
-    <section id="piaggio">
-    <h1>Piaggio</h1>
-    <p>Ini bagian Piaggio.</p>
-    </section>
-    
-    <section id="kawasaki">
-    <h1>Kawasaki</h1>
-    <p>Ini bagian Kawasaki.</p>
-    </section>
+    <section id="honda" class="placeholder-section"><h2>Honda Coming Soon</h2></section>
+    <section id="yamaha" class="placeholder-section"><h2>Yamaha Coming Soon</h2></section>
 
 </body>
 </html>
