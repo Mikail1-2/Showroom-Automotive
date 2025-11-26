@@ -15,10 +15,11 @@ body {
 /* =========================================================
    DESKTOP NAVBAR (TOSCA)
 ========================================================= */
+/* --- Header & Navbar Rapi --- */
 header {
-    background: linear-gradient(90deg, #00cba9, #009688); /* Gradasi Tosca agar lebih mewah */
-    padding: 15px 0;
-    position: sticky; /* Agar menu tetap nempel saat discroll */
+    background: linear-gradient(90deg, #00cba9, #009688);
+    padding: 10px 0; /* Padding sedikit diperkecil biar tidak terlalu tebal */
+    position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -31,29 +32,86 @@ header {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    flex-wrap: nowrap; /* PENTING: Mencegah menu turun ke bawah */
+}
+
+/* --- LOGO AREA --- */
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Jarak antara gambar logo dan tulisan */
+    text-decoration: none;
 }
 
 .logo img {
-    height: 50px;
+    height: 45px; /* Ukuran logo disesuaikan */
     width: auto;
     background: white;
-    padding: 5px;
-    border-radius: 50%; /* Logo jadi bulat */
+    padding: 4px;
+    border-radius: 50%;
     border: 2px solid white;
 }
 
 .brand-name {
     color: white;
-    font-size: 1.5rem; /* Ukuran huruf besar */
-    font-weight: 800; /* Tebal */
+    font-size: 1.2rem; /* Ukuran font pas, tidak terlalu raksasa */
+    font-weight: 800;
     font-family: 'Segoe UI', sans-serif;
-    letter-spacing: 1px; /* Jarak antar huruf */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Bayangan teks tipis */
+    letter-spacing: 1px;
+    white-space: nowrap; /* PENTING: Agar WEST BATAVIA tetap satu baris lurus */
+    text-transform: uppercase;
 }
 
-/* --- CAROUSEL PROMO SECTION --- */
+/* --- NAVIGASI --- */
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Dorong menu ke kanan */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Jarak antar tombol menu sedikit dirapatkan */
+}
+
+.nav-links li {
+    display: flex; /* Pastikan li tidak memakan tempat aneh */
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem; /* Font menu sedikit dikecilkan agar muat banyak */
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* PENTING: Agar "Lokasi Dealer" TIDAK TURUN baris */
+}
+
+/* Efek Hover & Active */
+.nav-links li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.nav-links li a.active {
+    background-color: #ffeb3b;
+    color: #333;
+    box-shadow: 0 4px 10px rgba(255, 235, 59, 0.4);
+    font-weight: 700;
+}
+
+/* --- Banner Section (Meniru Poster Kuning) --- */
+.banner-section {
+    padding: 20px;
+    background-color: white;
+}
+
 .poster-section {
-    padding: 20px 0;
+    padding: 30px 0;
     background: #f4f4f4;
     display: flex;
     justify-content: center;
@@ -61,18 +119,16 @@ header {
 
 .carousel-container {
     position: relative;
-    /* 1. MENGATUR UKURAN AGAR TIDAK TERLALU BESAR */
+    /* UKURAN FIXED: Agar gambar tidak loncat-loncat ukurannya */
     width: 90%; 
-    max-width: 800px; /* Lebar maksimal dibatasi 800px */
-    
-    /* 2. MEMAKSA BENTUK LANDSCAPE (RASIO 16:9 seperti TV) */
-    aspect-ratio: 16 / 9; 
+    max-width: 800px; /* Lebar maksimal */
+    height: 500px; /* KUNCI: Tinggi dikunci di 500px */
     
     margin: auto;
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    background: white; 
-    overflow: hidden; /* Sembunyikan bagian luar */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    background: white; /* Background putih untuk mengisi ruang kosong */
+    overflow: hidden; 
 }
 
 .carousel-wrapper {
@@ -88,29 +144,28 @@ header {
 }
 
 .carousel-slide img {
-    /* 3. AGAR GAMBAR UTUH & MENGIKUTI BENTUK LANDSCAPE */
     width: 100%;
     height: 100%;
-    object-fit: contain; /* PENTING: Gambar akan mengecil agar muat 100%, tidak terpotong */
-    background-color: #fff; /* Warna background jika ada sisa ruang kosong */
+    /* object-fit: contain = Gambar UTUH ada di dalam kotak, tidak terpotong, tidak gepeng */
+    object-fit: contain; 
     flex-shrink: 0;
+    background-color: #fff; /* Warna latar jika gambar beda ukuran */
 }
 
-/* Tombol Navigasi (Panah) */
 .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5); /* Hitam transparan agar lebih jelas */
+    background-color: rgba(0, 0, 0, 0.5); /* Hitam transparan */
     color: white;
     border: none;
-    font-size: 1.5rem;
+    font-size: 2rem;
     padding: 10px;
     cursor: pointer;
-    z-index: 10;
+    z-index: 100; /* PENTING: Agar tombol selalu di ATAS gambar */
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,92 +177,11 @@ header {
 }
 
 .btn-left {
-    left: 10px; /* Posisi di dalam kotak */
+    left: 15px; /* Jarak dari kiri */
 }
 
 .btn-right {
-    right: 10px; /* Posisi di dalam kotak */
-}
-
-/* Responsif untuk layar kecil */
-@media (max-width: 768px) {
-    .carousel-container {
-        max-width: 95%;
-    }
-    .btn-left { left: 10px; } /* Masuk ke dalam gambar di HP */
-    .btn-right { right: 10px; }
-}
-
-.logo img {
-    height: 100px; /* Sesuaikan ukuran logo */
-    object-fit: contain;
-    padding: 3px;
-    border-radius: 5px;
-}
-
-.nav-wrapper {
-    display: flex;
-    align-items: center;
-}
-
-/* Baris Atas: Beli & Jual */
-.top-actions {
-    margin-bottom: 5px;
-}
-
-.top-actions .action-btn {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    font-size: 18px;
-    margin-left: 15px;
-    transition: 0.3s;
-}
-
-.top-actions .action-btn:hover {
-    color: white;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 10px; /* Jarak antar menu */
-}
-
-.nav-links li a {
-    text-decoration: none;
-    color: white;
-    font-size: 0.95rem;
-    font-weight: 600;
-    padding: 8px 16px; /* Memberi ruang napas (seperti tombol) */
-    border-radius: 20px; /* Membuat sudut tumpul (style pil) */
-    transition: all 0.3s ease; /* Animasi halus */
-    border: 1px solid transparent; /* Persiapan border */
-}
-
-.nav-links li a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Putih transparan */
-    transform: translateY(-2px); /* Sedikit naik ke atas */
-}
-
-/* Efek Menu Aktif (Misal sedang di Home) */
-.nav-links li a.active {
-    background-color: #ffeb3b; /* Warna Kuning */
-    color: #333; /* Teks jadi gelap */
-    box-shadow: 0 4px 10px rgba(255, 235, 59, 0.4); /* Efek cahaya kuning */
-    transform: scale(1.05); /* Sedikit membesar */
-}
-
-/* --- Banner Section (Meniru Poster Kuning) --- */
-.banner-section {
-    padding: 20px;
-    background-color: white;
-}
-
-.poster-section {
-    padding: 20px;
-    background-color: #f4f4f4; /* Background halaman */
-    text-align: center; /* Untuk memusatkan poster */
+    right: 15px; /* Jarak dari kanan */
 }
 
 .poster-container {
@@ -525,4 +499,179 @@ header {
         grid-template-columns: 1fr;
         gap: 20px;
     }
+}
+
+/* --- STYLE MODAL DETAIL MOTOR --- */
+.modal-overlay {
+    display: none; /* Sembunyikan default */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7); /* Background gelap transparan */
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    width: 90%;
+    max-width: 900px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+    animation: modalSlide 0.4s;
+}
+
+@keyframes modalSlide {
+    from {top: -100px; opacity: 0;}
+    to {top: 0; opacity: 1;}
+}
+
+.close-modal {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.close-modal:hover { color: #000; }
+
+.modal-body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* KIRI: GAMBAR */
+.modal-left {
+    flex: 1;
+    min-width: 300px;
+    background: #f4f4f4;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-image-wrapper {
+    width: 100%;
+    height: 300px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.modal-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.modal-motor-title {
+    background: #ffeb3b; /* KUNING SESUAI REFERENSI */
+    color: #333;
+    font-weight: 900;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    border: 2px solid #fbc02d;
+    border-radius: 5px;
+}
+
+/* KANAN: SPEK */
+.modal-right {
+    flex: 1.2;
+    min-width: 300px;
+    padding: 20px;
+    border-left: 1px solid #eee;
+}
+
+.modal-price-bar {
+    background: #00cba9; /* TOSCA SESUAI REFERENSI */
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.spec-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    font-size: 0.95rem;
+}
+
+.spec-row:last-child { border-bottom: none; }
+
+.spec-row .icon { margin-right: 10px; width: 25px; text-align: center; }
+.spec-row .label { flex: 1; color: #666; font-weight: 500; }
+.spec-row .value { font-weight: bold; color: #333; text-transform: uppercase; }
+
+.warranty-box {
+    background: #e0f2f1;
+    border: 1px solid #b2dfdb;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #00695c;
+}
+
+.warranty-box ul { list-style: none; padding-left: 0; margin-top: 5px; }
+
+.doc-status {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.doc-badge {
+    background: #f0f0f0;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid #ddd;
+    flex: 1;
+    text-align: center;
+}
+
+.btn-wa-modal {
+    background: #25D366; /* Warna WA */
+    color: white;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.btn-wa-modal:hover { background: #128C7E; }
+
+/* Responsif Mobile */
+@media (max-width: 768px) {
+    .modal-body { flex-direction: column; }
+    .modal-right { border-left: none; border-top: 1px solid #eee; }
 }
