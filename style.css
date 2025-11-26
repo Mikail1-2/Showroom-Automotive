@@ -225,78 +225,118 @@ header {
 /* =========================================================
    SEARCH SECTION
 ========================================================= */
+/* --- BAGIAN PENCARIAN (SEARCH SECTION) - RAPI & TENGAH --- */
 .search-section {
-    background-color: #fff;
-    padding: 40px 20px;
+    background-color: #ffffff;
+    /* Padding: Atas 40px, Kanan 20px, BAWAH 0px (agar mepet), Kiri 20px */
+    padding: 40px 20px 0px 20px; 
+    margin-bottom: 0; /* Hilangkan jarak luar di bawah */
     text-align: center;
 }
 
-.search-label {
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-align: left;
-    margin: 0 0 20px 10px;
-    color: #555;
+.search-wrapper {
+    max-width: 1000px;
+    margin: 0 auto; /* Memastikan wadah utama ada di tengah */
 }
 
+/* Judul "Cari Sesuai Merk" & "Cari Motor Idamanmu" */
+.search-label {
+    font-size: 1.3rem;
+    color: #333; /* Warna lebih gelap agar tegas */
+    margin-bottom: 20px;
+    font-weight: 700;
+    display: block; /* Memastikan teks mengambil satu baris penuh */
+    /* Hapus text-align left atau margin-left jika ada sebelumnya */
+}
+
+/* Grid Logo Merk */
 .brand-grid {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 40px;
+    justify-content: center; /* Logo berjejer rapi di tengah */
+    margin-bottom: 50px; /* Jarak agak jauh ke judul bawahnya */
 }
 
+/* Item Logo */
 .brand-item {
-    width: 130px;
-    height: 110px;
+    width: 110px; /* Ukuran pas */
+    height: 90px;
     border: 1px solid #eee;
     border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     background: white;
     padding: 10px;
     cursor: pointer;
-    transition: 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .brand-item:hover {
-    transform: scale(1.15);
     border-color: #00cba9;
-    box-shadow: 0 10px 20px rgba(0,203,169,0.15);
+    transform: scale(1.15);
+    box-shadow: 0 10px 20px rgba(0, 203, 169, 0.15);
+    z-index: 2;
 }
 
 .brand-item img {
     max-width: 80%;
     max-height: 80%;
+    object-fit: contain;
+    transition: transform 0.3s;
 }
 
+/* Wadah Kolom Input Pencarian */
 .search-box-container {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    justify-content: center; /* Memastikan input & tombol ada di tengah */
+    max-width: 700px; /* Membatasi panjang maksimal agar tidak terlalu lebar */
+    margin: 0 auto; /* Posisi wadah persis di tengah layar */
 }
 
+/* Input Text */
 .search-input {
-    flex: 1;
-    padding: 15px 20px;
+    height: 50px; /* KUNCI: Tinggi ditetapkan secara pasti */
+    width: 100%;
+    padding: 0 20px; /* Padding atas-bawah 0, biarkan 'height' yang mengatur tengahnya */
     border: 1px solid #ccc;
-    border-right: none;
-    border-radius: 8px 0 0 8px;
+    border-right: none; /* Hilangkan garis kanan agar nyambung */
+    border-top-left-radius: 30px; 
+    border-bottom-left-radius: 30px;
+    font-size: 1rem;
+    outline: none;
+    background: #f9f9f9;
+    transition: 0.3s;
+    box-sizing: border-box; /* Penting agar border tidak menambah tinggi */
 }
 
+.search-input:focus {
+    border-color: #00cba9;
+    background: white;
+    box-shadow: 0 0 8px rgba(0, 203, 169, 0.2);
+}
+
+/* Tombol Cari (Kaca Pembesar) */
 .search-button {
-    background-color: #888;
-    padding: 12px 25px;
-    border-radius: 0 8px 8px 0;
+    height: 50px; /* KUNCI: Tinggi HARUS SAMA dengan input */
+    background-color: #555;
     border: none;
+    padding: 0 25px; /* Reset padding atas-bawah jadi 0 */
+    border-top-right-radius: 30px; 
+    border-bottom-right-radius: 30px;
     cursor: pointer;
+    display: flex;
+    align-items: center; /* Tengahkan icon secara vertikal */
+    justify-content: center;
     transition: 0.3s;
+    box-sizing: border-box;
 }
 
 .search-button:hover {
-    background-color: #666;
+    background-color: #00cba9; 
 }
 
 /* =========================================================
@@ -398,11 +438,18 @@ header {
    FOOTER
 ========================================================= */
 .cta-footer {
-    background-color: #00bfa5;
+    background-color: #00bfa5; /* Warna tosca */
     color: white;
     text-align: center;
-    padding: 20px;
-    margin-top: 40px;
+    padding: 30px 20px; /* Padding secukupnya */
+    
+    margin-top: 10px; /* KUNCI: Ubah jadi 0 agar nempel ke atas */
+    
+    font-weight: 900; /* KUNCI: 900 = Sangat Tebal */
+    font-size: 1.4rem; /* Sedikit diperbesar lagi agar jelas */
+    text-transform: uppercase; /* Opsional: Agar huruf besar semua lebih tegas */
+    letter-spacing: 1px; /* Jarak antar huruf biar elegan */
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
 }
 
 /* =========================================================
