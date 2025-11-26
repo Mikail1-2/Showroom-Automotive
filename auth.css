@@ -6,15 +6,37 @@
 }
 
 .navbar {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    gap: 12px;
+}
+
+
+.logo img {
+    height: 50px;
+    width: auto;
+    background: white;
+    padding: 5px;
+    border-radius: 50%; /* Logo jadi bulat */
+    border: 2px solid white;
+}
+
+.brand-name {
+    color: white;
+    font-size: 1.5rem; /* Ukuran huruf besar */
+    font-weight: 800; /* Tebal */
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 1px; /* Jarak antar huruf */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Bayangan teks tipis */
 }
 
 body {
+    padding-top: 120px;
     background: linear-gradient(90deg, #00c6a4, #ffee55);
     min-height: 100vh;
     display: flex;
