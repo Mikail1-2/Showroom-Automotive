@@ -416,9 +416,9 @@
                     <div class="doc-badge">📕 STNK <strong>Tersedia</strong></div>
                 </div>
 
-                <button class="btn-wa-modal" onclick="beliDariModal()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                    Tanya Penjual via WA
+                    <button class="btn-buy-modal" onclick="bukaPayment()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                    Pilih Pembayaran
                 </button>
             </div>
         </div>
@@ -505,8 +505,153 @@
                 modal.style.display = "none";
             }
         }
+
+    // --- LOGIKA PEMBAYARAN ---
+
+    // 1. Fungsi Buka Modal Pembayaran (Dari Detail ke Payment)
+    function bukaPayment() {
+        // Ambil data dari modal detail yang sedang terbuka
+        const namaMotor = document.getElementById('m-name').innerText;
+        const hargaMotorStr = document.getElementById('m-price').innerText;
+        
+        // Bersihkan format Rp dan titik untuk hitungan
+        const hargaMotor = parseInt(hargaMotorStr.replace(/[^0-9]/g, ''));
+        const biayaAdmin = 50000;
+        const totalBayar = hargaMotor + biayaAdmin;
+
+        // Isi data ke Modal Payment
+        document.getElementById('pay-motor-name').innerText = namaMotor;
+        document.getElementById('pay-motor-price').innerText = hargaMotorStr;
+        
+        // Format Total ke Rupiah
+        document.getElementById('pay-total').innerText = 'Rp ' + totalBayar.toLocaleString('id-ID');
+
+        // Tutup Modal Detail, Buka Modal Payment
+        document.getElementById('motorModal').style.display = 'none';
+        document.getElementById('paymentModal').style.display = 'block';
+    }
+
+    // 2. Fungsi Tutup Payment
+    function tutupPayment() {
+        document.getElementById('paymentModal').style.display = 'none';
+    }
+
+    // 3. Efek Visual: Update tampilan kartu saat mengetik
+    function updateCardVisual(input, type) {
+        if (type === 'name') {
+            const display = document.querySelector('.card-holder-display');
+            display.innerText = input.value.toUpperCase() || 'NAMA PEMILIK';
+        } else if (type === 'expiry') {
+            const display = document.querySelector('.card-expiry-display');
+            display.innerText = input.value || 'MM/YY';
+        }
+    }
+
+    // 4. Format Nomor Kartu (4 digit spasi 4 digit)
+    function formatCardNumber(input) {
+        let value = input.value.replace(/\D/g, ''); // Hapus selain angka
+        let formattedValue = '';
+        for (let i = 0; i < value.length; i++) {
+            if (i > 0 && i % 4 === 0) formattedValue += ' ';
+            formattedValue += value[i];
+        }
+        input.value = formattedValue;
+        document.querySelector('.card-number-display').innerText = formattedValue || '•••• •••• •••• ••••';
+    }
+
+    // 5. Proses Bayar (Simulasi Loading)
+    function prosesBayar() {
+        const btn = document.querySelector('.btn-pay-now');
+        const originalText = btn.innerText;
+        
+        // Ubah tombol jadi loading
+        btn.innerText = 'Memproses...';
+        btn.style.opacity = '0.7';
+        btn.disabled = true;
+
+        // Tunggu 2 detik (pura-pura connect ke bank)
+        setTimeout(() => {
+            document.getElementById('paymentModal').style.display = 'none';
+            document.getElementById('successModal').style.display = 'block';
+            
+            // Reset tombol
+            btn.innerText = originalText;
+            btn.style.opacity = '1';
+            btn.disabled = false;
+        }, 2000);
+    }
     </script>
 
+<div id="paymentModal" class="modal-overlay">
+    <div class="payment-content">
+        <div class="payment-header">
+            <h3>Checkout Aman</h3>
+            <span class="close-payment" onclick="tutupPayment()">&times;</span>
+        </div>
+
+        <div class="payment-body">
+            <div class="order-summary">
+                <h4>Ringkasan Pesanan</h4>
+                <div class="summary-card">
+                    <p class="summary-item">Unit: <strong id="pay-motor-name">Motor...</strong></p>
+                    <p class="summary-item">Harga: <span id="pay-motor-price">Rp 0</span></p>
+                    <p class="summary-item">Biaya Admin: <span>Rp 50.000</span></p>
+                    <hr>
+                    <p class="total-pay">Total: <strong id="pay-total">Rp 0</strong></p>
+                </div>
+                
+                <div class="secure-badge">
+                    🔒 Enkripsi SSL 256-bit. Data Anda aman.
+                </div>
+            </div>
+
+            <div class="card-form-section">
+                <h4>Detail Kartu Debit / Kredit</h4>
+                
+                <div class="credit-card-visual">
+                    <div class="card-chip"></div>
+                    <div class="card-number-display">•••• •••• •••• ••••</div>
+                    <div class="card-details-row">
+                        <div class="card-holder-display">NAMA PEMILIK</div>
+                        <div class="card-expiry-display">MM/YY</div>
+                    </div>
+                    <div class="card-logo">VISA</div>
+                </div>
+
+                <form onsubmit="event.preventDefault(); prosesBayar();">
+                    <div class="form-group">
+                        <label>Nama di Kartu</label>
+                        <input type="text" placeholder="Contoh: MIKAIL" required oninput="updateCardVisual(this, 'name')">
+                    </div>
+                    <div class="form-group">
+                        <label>Nomor Kartu</label>
+                        <input type="text" placeholder="0000 0000 0000 0000" maxlength="19" required oninput="formatCardNumber(this)">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label>Masa Berlaku</label>
+                            <input type="text" placeholder="MM/YY" maxlength="5" required oninput="updateCardVisual(this, 'expiry')">
+                        </div>
+                        <div class="form-group half">
+                            <label>CVV (3 Angka)</label>
+                            <input type="password" placeholder="123" maxlength="3" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-pay-now">Bayar Sekarang</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="successModal" class="modal-overlay" style="z-index: 10000;">
+    <div class="success-content">
+        <div class="success-icon">✓</div>
+        <h2>Pembayaran Berhasil!</h2>
+        <p>Terima kasih. Unit motor akan segera kami proses.</p>
+        <button onclick="location.reload()" class="btn-finish">Selesai</button>
+    </div>
+</div>
 
     </body>
 </html>
